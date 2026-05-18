@@ -1,1 +1,0 @@
-# site-ipl-omsk
