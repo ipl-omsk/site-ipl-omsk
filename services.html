@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Услуги — ФГБУ СЭУ ФПС ИПЛ по Омской области</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'GOSTUI2', 'Arial', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #3b4256;
+      background: #ffffff;
+    }
+    
+    a {
+      color: #055bd7;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover { color: #3c8aff; }
+    
+    .site-header {
+      background: #ffffff;
+      color: #3b4256;
+      padding: 12px 0;
+      border-bottom: 1px solid #dde1e6;
+    }
+    
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo img { height: 60px; }
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #3b4256;
+    }
+    .logo-text small {
+      display: block;
+      font-size: 14px;
+      opacity: 0.7;
+      font-weight: 400;
+      color: #979aa4;
+    }
+    
+    .contacts {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      color: #3b4256;
+    }
+    .contacts-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contacts-item strong {
+      font-size: 18px;
+      font-weight: 500;
+      color: #3b4256;
+    }
+    
+    .main-nav {
+      background: #01437b;
+      border-bottom: 1px solid #003366;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      gap: 32px;
+    }
+    .nav-inner a {
+      color: #ffffff;
+      padding: 16px 0;
+      display: block;
+      font-weight: 500;
+      position: relative;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+    .nav-inner a:hover,
+    .nav-inner a.active {
+      color: #ffffff;
+      opacity: 1;
+    }
+    .nav-inner a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #ff7b0f;
+    }
+    
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #dde1e6;
+      color: #3b4256;
+    }
+    
+    .intro-text {
+      background: #f4f7fb;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .service-card {
+      background: #ffffff;
+      border: 1px solid #dde1e6;
+      border-radius: 4px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .service-card:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+      border-color: #055bd7;
+    }
+    
+    .service-card__icon {
+      width: 48px;
+      height: 48px;
+      background: #055bd7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .service-card__title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #3b4256;
+      margin: 0;
+    }
+    
+    .service-card__desc {
+      font-size: 14px;
+      color: #979aa4;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+    
+    .service-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: #055bd7;
+      margin-top: auto;
+    }
+    .service-card__link::after {
+      content: '→';
+      transition: all 0.3s ease;
+    }
+    .service-card__link:hover::after {
+      transform: translateX(5px);
+    }
+    
+    .documents-block {
+      background: #ffffff;
+      border: 1px solid #dde1e6;
+      border-radius: 4px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .document-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid #dde1e6;
+    }
+    .document-item:last-child {
+      border-bottom: 0;
+    }
+    
+    .document-item__icon {
+      width: 36px;
+      height: 36px;
+      background: #f4f7fb;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .document-item__icon img {
+      max-width: 24px;
+      max-height: 24px;
+    }
+    
+    .document-item__title {
+      font-weight: 500;
+      color: #3b4256;
+    }
+    .document-item__title:hover {
+      color: #055bd7;
+    }
+    
+    .attention-block {
+      background: #f27c26;
+      color: #ffffff;
+      padding: 20px 24px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-weight: 500;
+    }
+    .attention-block h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .attention-block p {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .attention-block a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    .attention-block a:hover {
+      color: #3c8aff;
+    }
+    
+    .samples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    
+    .sample-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: #f4f7fb;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .sample-item:hover {
+      background: #e8edf3;
+    }
+    
+    .sample-item__icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+    
+    .sample-item__title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #3b4256;
+      line-height: 1.4;
+    }
+    .sample-item__title:hover {
+      color: #055bd7;
+    }
+    
+    .site-footer {
+      background: #01437b;
+      color: #ffffff;
+      padding: 32px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    
+    .footer-section__title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    
+    .footer-section a {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      margin: 8px 0;
+      transition: all 0.3s ease;
+    }
+    .footer-section a:hover {
+      color: #ffffff;
+      padding-left: 4px;
+    }
+    
+    .footer-contacts {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #c7ccd1;
+    }
+    .footer-contacts strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+    
+    @media (max-width: 1087px) {
+      .header-inner,
+      .nav-inner,
+      .page-content {
+        padding: 0 16px;
+      }
+      .contacts {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+    }
+    
+    @media (max-width: 735px) {
+      .services-grid,
+      .samples-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .logo-text {
+        font-size: 18px;
+      }
+      .logo img {
+        height: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.svg" alt="ФГБУ СЭУ ФПС ИПЛ">
+        <div class="logo-text">
+          ФГБУ СЭУ ФПС «ИПЛ»
+          <small>по Омской области</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О лаборатории</a>
+      <a href="napr.html">Направления</a>
+      <a href="services.html" class="active">Услуги</a>
+      <a href="history.html">История</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1 class="section-title">Услуги</h1>
+    <div class="intro-text">
+      <p>Работа по заявкам подразделений федеральной противопожарной службы МЧС России выполняется бесплатно. Также бесплатно проводятся, в соответствии с Федеральным Законом РФ «О судебно-экспертной деятельности», экспертизы по уголовным делам.</p>
+    </div>
+    <h2 class="section-title">Услуги на договорной основе</h2>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-card__icon">⚖️</div>
+        <h3 class="service-card__title">Судебные пожарно-технические экспертизы</h3>
+        <p class="service-card__desc">
+          По гражданским и арбитражным делам. Комплексное исследование обстоятельств пожара.
+        </p>
+        <a href="#" class="service-card__link">Подробнее</a>
+      </article>
+      <article class="service-card">
+        <div class="service-card__icon">🔬</div>
+        <h3 class="service-card__title">Экспертные исследования</h3>
+        <p class="service-card__desc">
+          Выезд специалистов для осмотра объекта пожара и инструментальные исследования веществ и материалов.
+        </p>
+        <a href="#" class="service-card__link">Подробнее</a>
+      </article>
+      <article class="service-card">
+        <div class="service-card__icon">🧪</div>
+        <h3 class="service-card__title">Лабораторные исследования</h3>
+        <p class="service-card__desc">
+          Инфракрасная и флуоресцентная спектроскопия, рентгеноструктурный анализ, хроматография, металлография.
+        </p>
+        <a href="#" class="service-card__link">Подробнее</a>
+      </article>
+    </div>
+    <div class="documents-block">
+      <h3 style="margin-bottom: 16px; font-weight: 500;">Документы</h3>
+      <div class="document-item">
+        <div class="document-item__icon">📄</div>
+        <a href="/images/docx/price.pdf" class="document-item__title" target="_blank">
+          Прейскурант услуг, оказываемых ФГБУ СЭУ ФПС ИПЛ по Омской области
+        </a>
+      </div>
+      <div class="document-item">
+        <div class="document-item__icon">📋</div>
+        <a href="/images/docx/details.pdf" class="document-item__title" target="_blank">
+          Карточка реквизитов ФГБУ СЭУ ФПС ИПЛ по Омской области
+        </a>
+      </div>
+    </div>
+    <div class="attention-block">
+      <h2>⚠️ ВНИМАНИЕ!</h2>
+      <p><strong>1.</strong> Заявки на оценку правильности монтажа и испытание на водоотдачу наружного противопожарного водопровода (гидрант) подаются в адрес ФГБУ СЭУ ФПС ИПЛ по Омской области. Предварительно необходимо присвоить номера пожарным гидрантам путем подачи обращения <a href="/images/Sample_applications/Sample_number_PG.doc">по данной форме</a> в сканированном виде с подписью и печатью на электронный адрес Главного управления МЧС России по Омской области <a href="mailto:kia@ugps.omsk.su">kia@ugps.omsk.su</a></p>
+      <p><strong>2.</strong> Вся деловая переписка в электронном виде по вопросам оказания услуг осуществляется через адрес электронной почты <a href="mailto:ipl-omsk@mail.ru">ipl-omsk@mail.ru</a></p>
+    </div>
+    <h2 class="section-title">Образцы заявок на оказание услуг</h2>
+    
+    <p style="margin-bottom: 24px; font-size: 14px; color: #979aa4;">
+      <strong>Уважаемые заявители!</strong> Обращаем Ваше внимание, что к образцам заявок вторым листом приложены перечни документов, необходимых для организации и проведения испытаний и исследований. В целях оперативной обработки заявок и подготовки финансовых документов <strong>карточка Вашего предприятия с реквизитами представляется одновременно с оформленной заявкой</strong>.
+    </p>
+    
+    <div class="samples-grid">
+      <a href="/images/Sample_applications/Sample_APS_SOUE.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание автоматической пожарной сигнализации и системы оповещения и управления эвакуацией людей при пожаре</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_AUPT.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание автоматической установки пожаротушения</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_smoke_protection.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание системы дымоудаления и подпора воздуха при пожаре</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_OZ.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Проверка качества огнезащитной обработки (деревянных и металлических конструкций)</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_VPV.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание внутреннего противопожарного водопровода</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_HUDRANT.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание наружного противопожарного водопровода (гидрант)</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_tank.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание наружного противопожарного водопровода (резервуар)</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_PO.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание по определению качества пенообразователя</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_category_buildind.docx" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Расчет категории зданий, помещений</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_category_NU.docx" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Расчет категории наружных установок</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_conformity.docx" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Оценка соответствия объекта защиты требованиям пожарной безопасности</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_doc_conformity.docx" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Оценка соответствия проектной документации требованиям пожарной безопасности</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_stairs_fences.docx" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Испытание наружных лестниц, ограждений крыш</span>
+      </a>
+      
+      <a href="/images/Sample_applications/Sample_GG_GOST_12.1.044-89.doc" class="sample-item">
+        <div class="sample-item__icon">📄</div>
+        <span class="sample-item__title">Определение группы горючести согласно п. 4.3. ГОСТ 12.1.044-89</span>
+      </a>
+    </div>
+    
+    <p style="text-align: center; margin-top: 32px;">
+      <a href="#top" style="color: #979aa4; font-size: 14px;">↑ Вернуться наверх</a>
+    </p>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-section">
+        <div class="footer-section__title">Контакты</div>
+        <div class="footer-contacts">
+          <strong>+7 (3812) 57-55-80</strong>
+          <strong>+7 (3812) 78-86-44</strong>
+          <strong>+7 (3812) 78-86-45</strong>
+          <a href="mailto:ipl-omsk@mail.ru" style="margin-top: 8px; display: block;">ipl-omsk@mail.ru</a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <div class="footer-section__title">Адрес</div>
+        <p style="line-height: 1.6;">
+          644099, г. Омск,<br>
+          ул. Петра Осминина, 32
+        </p>
+        <a href="contacts.html#map" style="margin-top: 8px; display: inline-block;">
+          🗺️ Карта проезда
+        </a>
+      </div>
+      
+      <div class="footer-section">
+        <div class="footer-section__title">Разделы</div>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О лаборатории</a>
+        <a href="napr.html">Направления деятельности</a>
+        <a href="services.html">Услуги</a>
+        <a href="history.html">История</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+    </div>
+    
+    <p style="text-align: center; margin-top: 32px; font-size: 14px; opacity: 0.7;">
+      © ФГБУ СЭУ ФПС «Испытательная пожарная лаборатория» по Омской области
+    </p>
+  </footer>
+
+</body>
+</html>
