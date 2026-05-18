@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакты — ФГБУ СЭУ ФПС ИПЛ по Омской области</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'GOSTUI2', 'Arial', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #3b4256;
+      background: #ffffff;
+    }
+    
+    a {
+      color: #055bd7;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover { color: #3c8aff; }
+  
+    .site-header {
+      background: #ffffff;
+      color: #3b4256;
+      padding: 12px 0;
+      border-bottom: 1px solid #dde1e6;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo { display: flex; align-items: center; gap: 16px; }
+    .logo img { height: 60px; }
+    .logo-text { font-size: 20px; font-weight: 700; line-height: 1.2; color: #3b4256; }
+    .logo-text small { display: block; font-size: 14px; opacity: 0.7; font-weight: 400; color: #979aa4; }
+    .contacts { display: flex; align-items: center; gap: 24px; font-size: 14px; color: #3b4256; }
+    .contacts-item { display: flex; align-items: center; gap: 8px; }
+    .contacts-item strong { font-size: 18px; font-weight: 500; color: #3b4256; }
+
+    .main-nav {
+      background: #01437b;
+      border-bottom: 1px solid #003366;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      gap: 32px;
+    }
+    .nav-inner a {
+      color: #ffffff;
+      padding: 16px 0;
+      display: block;
+      font-weight: 500;
+      position: relative;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+    .nav-inner a:hover, .nav-inner a.active { color: #ffffff; opacity: 1; }
+    .nav-inner a.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #ff7b0f;
+    }
+
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px 60px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #dde1e6;
+      color: #3b4256;
+    }
+    .section-subtitle {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 40px 0 24px;
+      color: #01437b;
+    }
+    
+    .leadership-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      border: 1px solid #dde1e6;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .leadership-table tr { border-bottom: 1px solid #dde1e6; }
+    .leadership-table tr:last-child { border-bottom: 0; }
+    .leadership-table td {
+      padding: 16px 20px;
+      vertical-align: top;
+    }
+    .leadership-table td:first-child {
+      width: 55%;
+      background: #f4f7fb;
+      font-weight: 500;
+      color: #3b4256;
+      border-right: 1px solid #dde1e6;
+    }
+    .leadership-table td:last-child {
+      color: #3b4256;
+    }
+    .leadership-table td:last-child .rank {
+      font-style: italic;
+      color: #979aa4;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+    .leadership-table td:last-child .name {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .leadership-table tr:hover td {
+      background: #e8edf3;
+    }
+    .leadership-table tr:hover td:first-child {
+      background: #dde1e6;
+    }
+    
+    .contact-info-block {
+      background: #f4f7fb;
+      border-radius: 4px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .contact-info-block h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #01437b;
+      margin-bottom: 20px;
+    }
+    .contact-info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    .contact-info-row:last-child { margin-bottom: 0; }
+    .contact-info-row .label {
+      font-weight: 600;
+      color: #3b4256;
+      min-width: 80px;
+    }
+    .contact-info-row .value {
+      color: #3b4256;
+    }
+    .contact-info-row .value a {
+      color: #055bd7;
+    }
+    .contact-info-row .value a:hover {
+      color: #3c8aff;
+    }
+    
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .contact-card {
+      background: #ffffff;
+      border: 1px solid #dde1e6;
+      border-radius: 4px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      border-color: #055bd7;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+    .contact-card__icon {
+      width: 48px;
+      height: 48px;
+      background: #055bd7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .contact-card__title {
+      font-size: 14px;
+      color: #979aa4;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-card__value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #3b4256;
+    }
+    .contact-card__value a {
+      color: #055bd7;
+    }
+    .contact-card__value a:hover {
+      color: #3c8aff;
+    }
+    .contact-card__sub {
+      font-size: 14px;
+      color: #979aa4;
+      margin-top: 4px;
+    }
+    
+    .map-section {
+      margin-bottom: 40px;
+    }
+    .map-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #01437b;
+      margin-bottom: 16px;
+    }
+    .map-container {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #dde1e6;
+      height: 450px;
+      background: #f4f7fb;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .site-footer {
+      background: #01437b;
+      color: #ffffff;
+      padding: 32px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .footer-section__title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #ffffff; }
+    .footer-section a { display: block; color: rgba(255,255,255,0.7); margin: 8px 0; transition: all 0.3s ease; }
+    .footer-section a:hover { color: #ffffff; padding-left: 4px; }
+    .footer-contacts { font-size: 14px; line-height: 1.6; color: #c7ccd1; }
+    .footer-contacts strong { display: block; font-size: 18px; margin-bottom: 4px; color: #ffffff; }
+    
+    @media (max-width: 1087px) {
+      .header-inner, .nav-inner, .page-content { padding: 0 16px; }
+      .contacts { flex-wrap: wrap; justify-content: center; }
+      .nav-inner { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    }
+    @media (max-width: 735px) {
+      .section-title { font-size: 24px; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .logo-text { font-size: 18px; }
+      .logo img { height: 48px; }
+      .leadership-table td:first-child { width: 40%; }
+      .leadership-table td { padding: 12px 14px; }
+      .contact-info-block { padding: 20px; }
+      .contact-info-row { flex-direction: column; gap: 4px; }
+      .map-container { height: 300px; }
+      .contact-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.svg" alt="ФГБУ СЭУ ФПС ИПЛ">
+        <div class="logo-text">
+          ФГБУ СЭУ ФПС «ИПЛ»
+          <small>по Омской области</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О лаборатории</a>
+      <a href="napr.html">Направления</a>
+      <a href="services.html">Услуги</a>
+      <a href="history.html">История</a>
+      <a href="contacts.html" class="active">Контакты</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1 class="section-title">Контакты</h1>
+    
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-card__icon">📞</div>
+        <div class="contact-card__title">Телефон / Факс</div>
+        <div class="contact-card__value">
+          <a href="tel:+73812575580">+7 (3812) 57-55-80</a><br>
+          <a href="tel:+73812788644">+7 (3812) 78-86-44</a><br>
+          <a href="tel:+73812788645">+7 (3812) 78-86-45</a>
+        </div>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-card__icon">✉️</div>
+        <div class="contact-card__title">Электронная почта</div>
+        <div class="contact-card__value">
+          <a href="mailto:ipl-omsk@mail.ru">ipl-omsk@mail.ru</a>
+        </div>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-card__icon">📍</div>
+        <div class="contact-card__title">Адрес</div>
+        <div class="contact-card__value">
+          644076, г. Омск,<br>ул. Петра Осминина, 32
+        </div>
+        <div class="contact-card__sub">Чкаловский округ</div>
+      </div>
+    </div>
+    
+    <div class="contact-info-block">
+      <h3>Контактные данные</h3>
+      <div class="contact-info-row">
+        <span class="label">Адрес:</span>
+        <span class="value">644076, г. Омск, ул. Петра Осминина, 32</span>
+      </div>
+      <div class="contact-info-row">
+        <span class="label">Тел./факс:</span>
+        <span class="value">
+          <a href="tel:+73812575580">(3812) 57-55-80</a>,
+          <a href="tel:+73812788644">78-86-44</a>,
+          <a href="tel:+73812788645">78-86-45</a>
+        </span>
+      </div>
+      <div class="contact-info-row">
+        <span class="label">E-mail:</span>
+        <span class="value"><a href="mailto:ipl-omsk@mail.ru">ipl-omsk@mail.ru</a></span>
+      </div>
+    </div>
+
+    <h2 class="section-subtitle">Руководство подразделения</h2>
+    
+    <table class="leadership-table">
+      <tr>
+        <td>Временно исполняющий обязанности начальника</td>
+        <td>
+          <span class="rank">подполковник внутренней службы</span>
+          <span class="name">Кравченко Надежда Александровна</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Начальник сектора судебных экспертиз</td>
+        <td>
+          <span class="rank">майор внутренней службы</span>
+          <span class="name">Лапин Игорь Олегович</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Начальник сектора аттестации экспертов</td>
+        <td>
+          <span class="rank">майор внутренней службы</span>
+          <span class="name">Малахов Максим Владимирович</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Начальник сектора исследовательских и испытательных работ в области пожарной безопасности</td>
+        <td>
+          <span class="rank">майор внутренней службы</span>
+          <span class="name">Сериков Вячеслав Александрович</span>
+        </td>
+      </tr>
+    </table>
+
+    <div class="map-section" id="map">
+      <h3>Схема проезда</h3>
+      <div class="map-container">
+       <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A0c04a057bff9e7e9b4084e317fd7c3969ad08b971856939f4b46445fb744a99b&amp;source=constructor" 
+        width="933"
+        height="551" 
+        frameborder="0"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-section">
+        <div class="footer-section__title">Контакты</div>
+        <div class="footer-contacts">
+          <strong>+7 (3812) 57-55-80</strong>
+          <strong>+7 (3812) 78-86-44</strong>
+          <strong>+7 (3812) 78-86-45</strong>
+          <a href="mailto:ipl-omsk@mail.ru" style="margin-top: 8px; display: block;">ipl-omsk@mail.ru</a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <div class="footer-section__title">Адрес</div>
+        <p style="line-height: 1.6;">
+          644076, г. Омск,<br>
+          ул. Петра Осминина, 32
+        </p>
+        <a href="contacts.html#map" style="margin-top: 8px; display: inline-block;">
+          🗺️ Карта проезда
+        </a>
+      </div>
+      
+      <div class="footer-section">
+        <div class="footer-section__title">Разделы</div>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О лаборатории</a>
+        <a href="napr.html">Направления деятельности</a>
+        <a href="services.html">Услуги</a>
+        <a href="history.html">История</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+    </div>
+    
+    <p style="text-align: center; margin-top: 32px; font-size: 14px; opacity: 0.7;">
+      © ФГБУ СЭУ ФПС «Испытательная пожарная лаборатория» по Омской области
+    </p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Направления деятельности — ФГБУ СЭУ ФПС ИПЛ по Омской области</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'GOSTUI2', 'Arial', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #3b4256;
+      background: #ffffff;
+    }
+    
+    a {
+      color: #055bd7;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover { color: #3c8aff; }
+    
+    .site-header {
+      background: #ffffff;
+      color: #3b4256;
+      padding: 12px 0;
+      border-bottom: 1px solid #dde1e6;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo { display: flex; align-items: center; gap: 16px; }
+    .logo img { height: 60px; }
+    .logo-text { font-size: 20px; font-weight: 700; line-height: 1.2; color: #3b4256; }
+    .logo-text small { display: block; font-size: 14px; opacity: 0.7; font-weight: 400; color: #979aa4; }
+    .contacts { display: flex; align-items: center; gap: 24px; font-size: 14px; color: #3b4256; }
+    .contacts-item { display: flex; align-items: center; gap: 8px; }
+    .contacts-item strong { font-size: 18px; font-weight: 500; color: #3b4256; }
+    
+    .main-nav {
+      background: #01437b;
+      border-bottom: 1px solid #003366;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      gap: 32px;
+    }
+    .nav-inner a {
+      color: #ffffff;
+      padding: 16px 0;
+      display: block;
+      font-weight: 500;
+      position: relative;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+    .nav-inner a:hover, .nav-inner a.active { color: #ffffff; opacity: 1; }
+    .nav-inner a.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #ff7b0f;
+    }
+    
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px 60px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #dde1e6;
+      color: #3b4256;
+    }
+    .section-subtitle {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 40px 0 24px;
+      color: #01437b;
+      scroll-margin-top: 80px; 
+    }
+    
+    .about-intro {
+      background: #f4f7fb;
+      border-radius: 4px;
+      padding: 24px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .about-intro strong { color: #01437b; }
+    
+    .content-text p { margin-bottom: 16px; }
+    .content-text p:last-child { margin-bottom: 0; }
+
+    .direction-card {
+      background: #ffffff;
+      border: 1px solid #dde1e6;
+      border-radius: 4px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .direction-card__title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #01437b;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .direction-card__title span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #055bd7;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 16px;
+    }
+
+    .functions-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+    }
+    .functions-list li {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .functions-list li:last-child { margin-bottom: 0; }
+    .functions-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background: #e8edf3;
+      color: #055bd7;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .functions-list li:hover::before {
+      background: #055bd7;
+      color: #fff;
+    }
+    
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .spec-item {
+      background: #f4f7fb;
+      border-radius: 4px;
+      padding: 16px;
+      border-left: 4px solid #055bd7;
+      transition: all 0.3s ease;
+    }
+    .spec-item:hover {
+      background: #e8edf3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .spec-item__code {
+      font-weight: 700;
+      color: #055bd7;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .spec-item__name {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    .installations-block {
+      background: #f27c26;
+      color: #ffffff;
+      padding: 24px;
+      border-radius: 4px;
+      margin-top: 32px;
+    }
+    .installations-block h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .installations-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+    }
+    .installations-list li {
+      background: rgba(255,255,255,0.15);
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .site-footer {
+      background: #01437b;
+      color: #ffffff;
+      padding: 32px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .footer-section__title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #ffffff; }
+    .footer-section a { display: block; color: rgba(255,255,255,0.7); margin: 8px 0; transition: all 0.3s ease; }
+    .footer-section a:hover { color: #ffffff; padding-left: 4px; }
+    .footer-contacts { font-size: 14px; line-height: 1.6; color: #c7ccd1; }
+    .footer-contacts strong { display: block; font-size: 18px; margin-bottom: 4px; color: #ffffff; }
+    
+    @media (max-width: 1087px) {
+      .header-inner, .nav-inner, .page-content { padding: 0 16px; }
+      .contacts { flex-wrap: wrap; justify-content: center; }
+      .nav-inner { flex-wrap: wrap; justify-content: center; gap: 16px; }
+      .spec-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 735px) {
+      .section-title { font-size: 24px; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .logo-text { font-size: 18px; }
+      .logo img { height: 48px; }
+      .direction-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.svg" alt="ФГБУ СЭУ ФПС ИПЛ">
+        <div class="logo-text">
+          ФГБУ СЭУ ФПС «ИПЛ»
+          <small>по Омской области</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О лаборатории</a>
+      <a href="napr.html" class="active">Направления</a>
+      <a href="services.html">Услуги</a>
+      <a href="history.html">История</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1 class="section-title">Направления деятельности</h1>
+    
+    <div class="about-intro">
+      <p>Федеральное государственное бюджетное учреждение «Судебно-экспертное учреждение федеральной противопожарной службы «Испытательная пожарная лаборатория» по Омской области» включает в себя следующие основные структурные подразделения (сектора):</p>
+    </div>
+    
+    <div class="direction-card">
+      <h2 class="direction-card__title" id="sector-1">
+        <span>1</span> Сектор судебных экспертиз
+      </h2>
+      
+      <p style="margin-bottom: 16px;">В соответствии с возложенными задачами осуществляет следующие основные функции:</p>
+      
+      <ul class="functions-list">
+        <li>Производство судебных экспертиз в ходе предварительного расследования и судебного производства по делам о пожарах и по делам о нарушениях требований пожарной безопасности.</li>
+        <li>Производство несудебных экспертиз по запросу юридических и физических лиц.</li>
+        <li>Совместно с сектором ИИР в области ПБ производство экспертных исследований по делам об административных правонарушениях в области пожарной безопасности.</li>
+        <li>Внедрение экспертно-криминалистических средств и методов в практику предварительного расследования по делам о пожарах и нарушениях требований пожарной безопасности, проверок по фактам пожаров.</li>
+        <li>Внедрение технических средств и новых методов инструментального контроля в практику проведения мероприятий по контролю (надзору) при осуществлении государственного пожарного надзора.</li>
+        <li>Участие в работе межведомственных следственно-оперативных групп по раскрытию и расследованию преступлений, связанных с пожарами.</li>
+        <li>Участие сотрудников сектора в качестве специалистов в следственных и иных процессуальных действиях — при осмотре места происшествия, связанного с пожаром, обнаружении, фиксации, изъятии и исследовании следов и других объектов.</li>
+        <li>Исследование пожаров с целью оказания технической, информационной и аналитической поддержки направлений деятельности ФПС, правоохранительных органов, занимающихся расследованием пожаров.</li>
+        <li>Оказание методической, информационной, консультативной и практической помощи ФПС в осуществлении деятельности по исследованию пожаров.</li>
+        <li>Подготовка информационных писем, обзоров, рекомендаций, аналитических материалов по результатам исследованных пожаров, научно-технической и испытательной деятельности.</li>
+        <li>Участие в профессиональном обучении и повышении квалификации должностных лиц ФПС, специализирующихся на исследовании пожаров.</li>
+        <li>Ведение, в порядке, установленном МЧС России, карточек учета выезда сотрудников СЭУ ФПС ИПЛ на пожары и организация их хранения.</li>
+        <li>Выполнение видео- и фотосъемки испытаний, явлений, происходящих на пожаре в целях подготовки информационных материалов для ФПС.</li>
+        <li>Ведение фонда фото- и видеоматериалов по пожарам, испытательным и экспериментальным работам.</li>
+      </ul>
+
+      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #3b4256;">Специализации судебных пожарно-технических экспертов:</h3>
+      
+      <div class="spec-grid">
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-1</span>
+          <span class="spec-item__name">Реконструкция процесса возникновения и развития пожара</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-2</span>
+          <span class="spec-item__name">Металлографические и морфологические исследования металлических объектов СПТЭ</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-3</span>
+          <span class="spec-item__name">Рентгенофазовый анализ при исследовании объектов СПТЭ</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-4</span>
+          <span class="spec-item__name">Молекулярная и атомная спектроскопия при исследовании объектов СПТЭ</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-5</span>
+          <span class="spec-item__name">Термический анализ при исследовании объектов СПТЭ</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-6</span>
+          <span class="spec-item__name">Обнаружение и классификация инициаторов горения при исследовании объектов СПТЭ</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-7</span>
+          <span class="spec-item__name">Полевые инструментальные методы при исследовании объектов СПТЭ</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__code">СПТЭ-8</span>
+          <span class="spec-item__name">Анализ нарушений нормативных требований в области пожарной безопасности, прогнозирование и экспертное исследование их последствий</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="direction-card">
+      <h2 class="direction-card__title" id="sector-2">
+        <span>2</span> Сектор аттестации экспертов
+      </h2>
+      
+      <p style="margin-bottom: 16px;"><strong>Основными задачами сектора являются:</strong></p>
+      <ul class="functions-list">
+        <li>Проведение научных исследований в области пожарной безопасности в соответствии с планом научно-технической деятельности МЧС России.</li>
+        <li>Аттестация сотрудников и работников СЭУ ФПС ИПЛ на право самостоятельного производства судебных экспертиз.</li>
+        <li>Участие в процессе обучения инспекторского состава ГПН по направлению исследования пожаров.</li>
+      </ul>
+
+      <p style="margin-bottom: 16px;"><strong>Основные функции:</strong></p>
+      <ul class="functions-list">
+        <li>Оказание методической, информационной, консультативной и практической помощи ФПС в осуществлении деятельности по исследованию пожаров.</li>
+        <li>Подготовка информационных писем, обзоров, рекомендаций, аналитических материалов по результатам исследованных пожаров, научно-технической и испытательной деятельности.</li>
+        <li>Участие в профессиональном обучении и повышении квалификации должностных лиц ФПС, специализирующихся на исследовании пожаров.</li>
+        <li>Проведение аттестации сотрудников и работников СЭУ ФПС ИПЛ на право самостоятельного производства судебных экспертиз.</li>
+        <li>Обобщение и распространение научно-технической, иной информации в области пожарной безопасности в системе ФПС.</li>
+      </ul>
+    </div>
+    
+    <div class="direction-card">
+      <h2 class="direction-card__title" id="sector-3">
+        <span>3</span> Сектор исследовательских и испытательных работ в области ПБ
+      </h2>
+      
+      <p style="margin-bottom: 16px;"><strong>Основными направлениями деятельности являются:</strong></p>
+      <ul class="functions-list">
+        <li>Проведение испытаний на пожарную опасность веществ и материалов с целью определения их пожарно-технических характеристик.</li>
+        <li>Проведение испытаний систем автоматической противопожарной защиты зданий, строений и сооружений.</li>
+        <li>Проверка качества огнезащитной обработки деревянных и металлических строительных конструкций.</li>
+        <li>Проверка качества пенообразователей.</li>
+        <li>Исследование вещественных доказательств, изъятых с пожаров.</li>
+      </ul>
+
+      <div class="installations-block">
+        <h3>Испытательные установки</h3>
+        <p style="margin-bottom: 12px;">Имеющиеся в ФГБУ СЭУ ФПС ИПЛ по Омской области <strong>17 метрологически аттестованных испытательных установок</strong> позволяют проводить испытания:</p>
+        <ul class="installations-list">
+          <li>Строительных материалов</li>
+          <li>Огнезащитных веществ и материалов для древесины</li>
+          <li>Кабельной продукции на нераспространение горения</li>
+          <li>Электромонтажной погонажной арматуры</li>
+          <li>Воспламеняемость тканей и элементов мягкой мебели</li>
+          <li>Шкафов пожарных</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-section">
+        <div class="footer-section__title">Контакты</div>
+        <div class="footer-contacts">
+          <strong>+7 (3812) 57-55-80</strong>
+          <strong>+7 (3812) 78-86-44</strong>
+          <strong>+7 (3812) 78-86-45</strong>
+          <a href="mailto:ipl-omsk@mail.ru" style="margin-top: 8px; display: block;">ipl-omsk@mail.ru</a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <div class="footer-section__title">Адрес</div>
+        <p style="line-height: 1.6;">
+          644099, г. Омск,<br>
+          ул. Петра Осминина, 32
+        </p>
+        <a href="contacts.html#map" style="margin-top: 8px; display: inline-block;">
+          🗺️ Карта проезда
+        </a>
+      </div>
+      
+      <div class="footer-section">
+        <div class="footer-section__title">Разделы</div>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О лаборатории</a>
+        <a href="napr.html">Направления деятельности</a>
+        <a href="services.html">Услуги</a>
+        <a href="history.html">История</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+    </div>
+    
+    <p style="text-align: center; margin-top: 32px; font-size: 14px; opacity: 0.7;">
+      © ФГБУ СЭУ ФПС «Испытательная пожарная лаборатория» по Омской области
+    </p>
+  </footer>
+
+</body>
+</html>
